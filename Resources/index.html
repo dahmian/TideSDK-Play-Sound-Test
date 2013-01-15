@@ -1,1 +1,48 @@
-<html><head></head><body style="background-color:#1c1c1c;margin:0"><div style="border-top:1px solid #404040"><div style="color:#fff;;padding:10px">Welcome to TideSDK Developer</div></div></body></html>
+<html>
+  <head>
+    <title>TideSDK Play Sound Demo</title>
+    <style>
+      body {
+        background-color: #1c1c1c;
+        margin: 0
+      }
+
+      #faceWink {
+        display: block;
+        margin: 0 auto;
+        width: 350px;
+      }
+
+      #playButton {
+        display: block;
+        margin: 0 auto;
+        font-size: 24pt;
+      }
+    </style>
+  </head>
+  <body style="">
+    <img id="faceWink" src="faceWink.svg"/> <!-- http://openclipart.org/detail/30199/tango-face-wink-by-warszawianka -->
+    <button id="playButton" style="">Play Again!</button>
+  </body>
+  <script>
+    (function() {
+      var sound;
+
+      playSound();
+      attachPlaySoundButtonEventHandler();
+
+      function playSound() {
+        if (typeof sound === "object") {
+          sound.stop();
+        }
+        sound = Ti.Media.createSound("sadSound.wav"); //http://www.freesound.org/people/Benboncan/sounds/73581/
+        sound.play();
+      }
+
+      function attachPlaySoundButtonEventHandler() {
+        var playButton = document.getElementById("playButton");
+        playButton.onclick = playSound;
+      }
+    })();
+  </script>
+</html>
