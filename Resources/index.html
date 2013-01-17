@@ -22,27 +22,36 @@
   </head>
   <body>
     <img id="faceWink" src="faceWink.svg"/> <!-- http://openclipart.org/detail/30199/tango-face-wink-by-warszawianka -->
-    <button id="playButton">Play Again!</button>
+    <button id="playButton">Open Music</button>
   </body>
   <script>
+
     (function() {
       /* Audio JS object did not work in Tide app, so using the TideSDK instead */
       var sound;
 
-      playSound();
+      //playSound("sadSound.wav"); //http://www.freesound.org/people/Benboncan/sounds/73581/
       attachPlaySoundButtonEventHandler();
-
-      function playSound() {
-        if (typeof sound === "object") {
-          sound.stop();
-        }
-        sound = Ti.Media.createSound("sadSound.wav"); //http://www.freesound.org/people/Benboncan/sounds/73581/
-        sound.play();
-      }
 
       function attachPlaySoundButtonEventHandler() {
         var playButton = document.getElementById("playButton");
-        playButton.onclick = playSound;
+        playButton.onclick = openMusicFile;
+      }
+
+      function openMusicFile() {
+        Ti.UI.getCurrentWindow().openFileChooserDialog(callback, {multiple: false, title: "Open a music file", types: ["wav", "mp3"]})
+
+        function callback(filePathsArray) {
+          playSound(filePathsArray[0]);
+        }
+      }
+
+      function playSound(path) {
+        if (typeof sound === "object") {
+          sound.stop();
+        }
+        sound = Ti.Media.createSound(path);
+        sound.play();
       }
     })();
   </script>
