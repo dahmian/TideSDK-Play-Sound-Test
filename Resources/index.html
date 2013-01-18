@@ -42,7 +42,7 @@
         function callback(filePathsArray) {
           filePath = filePathsArray[0];
           sound = Ti.Media.createSound(filePath);
-          playMusic.apply(playButton);
+          playMusic.call(playButton);
         }
       }
 
