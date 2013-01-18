@@ -42,20 +42,20 @@
         function callback(filePathsArray) {
           filePath = filePathsArray[0];
           sound = Ti.Media.createSound(filePath);
-          playMusic();
+          playMusic.apply(playButton);
         }
       }
 
       function playMusic() {
         sound.play();
-        playButton.src = "pause.png";
-        playButton.onclick = pauseMusic;
+        this.src = "pause.png";
+        this.onclick = pauseMusic;
       }
 
       function pauseMusic() {
         sound.pause();
-        playButton.src = "start.png";
-        playButton.onclick = playMusic;
+        this.src = "start.png";
+        this.onclick = playMusic;
       }
     })();
   </script>
