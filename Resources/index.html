@@ -55,7 +55,8 @@
 
       function pauseMusic() {
         sound.pause();
-        resetToPlay();
+        this.src = "start.png";
+        this.onclick = playMusic;
       }
     })();
   </script>
