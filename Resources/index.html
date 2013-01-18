@@ -41,29 +41,23 @@
 
         function callback(filePathsArray) {
           filePath = filePathsArray[0];
-          playMusic();
+          sound = Ti.Media.createSound(filePath);
+          sound.play()
           playButton.onclick = pauseMusic;
+          playButton.src = "pause.png";
         }
       }
 
       function playMusic() {
-        playSound(filePath);
+        sound.play();
         playButton.src = "pause.png";
         playButton.onclick = pauseMusic;
       }
 
       function pauseMusic() {
-        sound.pause(); //running play after pause seems to reset song position
+        sound.pause();
         playButton.src = "start.png";
         playButton.onclick = playMusic;
-      }
-
-      function playSound(path) {
-        if (typeof sound === "object") {
-          sound.stop();
-        }
-        sound = Ti.Media.createSound(path);
-        sound.play();
       }
     })();
   </script>
