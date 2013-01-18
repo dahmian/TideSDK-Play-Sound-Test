@@ -47,16 +47,19 @@
         this.onclick = playMusic;
       }
 
-      function playMusic() {
-        sound.play();
+      function resetToPause() {
         this.src = "pause.png";
         this.onclick = pauseMusic;
       }
 
+      function playMusic() {
+        sound.play();
+        resetToPause.call(this);
+      }
+
       function pauseMusic() {
         sound.pause();
-        this.src = "start.png";
-        this.onclick = playMusic;
+        resetToPlay.call(this);
       }
     })();
   </script>
