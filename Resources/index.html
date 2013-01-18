@@ -32,10 +32,6 @@
         playButton.onclick = openMusicFile;
       }
 
-      function attachPlayButtonEventHandler() {
-        playButton.onclick = playMusic;
-      }
-
       function openMusicFile() {
         Ti.UI.getCurrentWindow().openFileChooserDialog(callback, {multiple: false, title: "Open a music file", types: ["wav", "mp3"]})
 
