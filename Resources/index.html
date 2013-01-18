@@ -37,8 +37,14 @@
         function callback(filePathsArray) {
           var filePath = filePathsArray[0];
           sound = Ti.Media.createSound(filePath);
+          sound.onComplete(function() {resetToPlay.call(multiFunctionButton)}); //bind is not supported
           playMusic.call(multiFunctionButton);
         }
+      }
+
+      function resetToPlay() {
+        this.src = "start.png";
+        this.onclick = playMusic;
       }
 
       function playMusic() {
