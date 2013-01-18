@@ -7,43 +7,55 @@
         margin: 0
       }
 
-      #faceWink {
+      #start{
         display: block;
-        margin: 0 auto;
+        margin: 75px auto;
         width: 350px;
-      }
-
-      #playButton {
-        display: block;
-        margin: 0 auto;
-        font-size: 24pt;
       }
     </style>
   </head>
   <body>
-    <img id="faceWink" src="faceWink.svg"/> <!-- http://openclipart.org/detail/30199/tango-face-wink-by-warszawianka -->
-    <button id="playButton">Open Music</button>
+<!-- http://openclipart.org/search/?query=tango+media -->
+    <img id="start" src="open.png"/> <!-- http://openclipart.org/detail/30199/tango-face-wink-by-warszawianka -->
   </body>
   <script>
 
     (function() {
       /* Audio JS object did not work in Tide app, so using the TideSDK instead */
       var sound;
+      var filePath;
+      var playButton = document.getElementById("start");
 
-      //playSound("sadSound.wav"); //http://www.freesound.org/people/Benboncan/sounds/73581/
-      attachPlaySoundButtonEventHandler();
+      attachOpenSoundButtonEventHandler();
 
-      function attachPlaySoundButtonEventHandler() {
-        var playButton = document.getElementById("playButton");
+      function attachOpenSoundButtonEventHandler() {
         playButton.onclick = openMusicFile;
+      }
+
+      function attachPlayButtonEventHandler() {
+        playButton.onclick = playMusic;
       }
 
       function openMusicFile() {
         Ti.UI.getCurrentWindow().openFileChooserDialog(callback, {multiple: false, title: "Open a music file", types: ["wav", "mp3"]})
 
         function callback(filePathsArray) {
-          playSound(filePathsArray[0]);
+          filePath = filePathsArray[0];
+          playMusic();
+          playButton.onclick = pauseMusic;
         }
+      }
+
+      function playMusic() {
+        playSound(filePath);
+        playButton.src = "pause.png";
+        playButton.onclick = pauseMusic;
+      }
+
+      function pauseMusic() {
+        sound.pause(); //running play after pause seems to reset song position
+        playButton.src = "start.png";
+        playButton.onclick = playMusic;
       }
 
       function playSound(path) {
