@@ -35,6 +35,9 @@
         Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Open a music file", types: ["wav", "mp3"]})
 
         function fileSelectedCallback(filePathsArray) {
+          if (filePathsArray.length === 0) {
+            return;
+          }
           var filePath = filePathsArray[0];
           sound = Ti.Media.createSound(filePath);
           sound.onComplete(function() {resetToPlay.call(multiFunctionButton)}); //bind is not supported
