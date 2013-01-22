@@ -27,14 +27,13 @@
 
     (function() {
       /* Audio JS object did not work in Tide app, so using the TideSDK instead */
-      var sound;
+      var playList = [];
       var openButton = document.getElementById("openButton");
+      var playButton = document.getElementById("playButton");
 
-      attachOpenSoundButtonEventHandler();
-
-      function attachOpenSoundButtonEventHandler() {
-        openButton.onclick = openMusicFile;
-      }
+      openButton.onclick = openMusicFile;
+      playButton.onclick = playMusic;
+      
 
       function openMusicFile() {
         Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Open a music file", types: ["wav", "mp3"]})
@@ -44,9 +43,7 @@
             return;
           }
           var filePath = filePathsArray[0];
-          sound = Ti.Media.createSound(filePath);
-          sound.onComplete(function() {resetToPlay.call(openButton)}); //bind is not supported
-          playMusic.call(openButton);
+          playList.push((Ti.Media.createSound(filePath)));
         }
       }
 
@@ -61,12 +58,12 @@
       }
 
       function playMusic() {
-        sound.play();
+        playList[0].play();
         resetToPause.call(this);
       }
 
       function pauseMusic() {
-        sound.pause();
+        playList[0].pause();
         resetToPlay.call(this);
       }
     })();
