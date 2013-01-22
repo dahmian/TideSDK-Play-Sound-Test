@@ -7,28 +7,33 @@
         margin: 0
       }
 
-      #multiFunctionButton{
+      #openButton, #playButton {
         display: block;
-        margin: 75px auto;
-        width: 350px;
+        width: 220px;
+        margin: 0px auto;
+      }
+
+      #openButton{
+        margin: 25px auto;
       }
     </style>
   </head>
   <body>
     <!-- http://openclipart.org/search/?query=tango+media -->
-    <img id="multiFunctionButton" src="open.png"/>
+    <img id="openButton" src="open.png"/>
+    <img id="playButton" src="play.png"/>
   </body>
   <script>
 
     (function() {
       /* Audio JS object did not work in Tide app, so using the TideSDK instead */
       var sound;
-      var multiFunctionButton = document.getElementById("multiFunctionButton");
+      var openButton = document.getElementById("openButton");
 
       attachOpenSoundButtonEventHandler();
 
       function attachOpenSoundButtonEventHandler() {
-        multiFunctionButton.onclick = openMusicFile;
+        openButton.onclick = openMusicFile;
       }
 
       function openMusicFile() {
@@ -40,8 +45,8 @@
           }
           var filePath = filePathsArray[0];
           sound = Ti.Media.createSound(filePath);
-          sound.onComplete(function() {resetToPlay.call(multiFunctionButton)}); //bind is not supported
-          playMusic.call(multiFunctionButton);
+          sound.onComplete(function() {resetToPlay.call(openButton)}); //bind is not supported
+          playMusic.call(openButton);
         }
       }
 
