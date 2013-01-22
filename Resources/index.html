@@ -32,7 +32,7 @@
       var playButton = document.getElementById("playButton");
 
       openButton.onclick = openMusicFile;
-      playButton.onclick = playMusic;
+      playButton.onclick = function() {playMusic.call(this, 0)};
       
 
       function openMusicFile() {
@@ -57,8 +57,10 @@
         this.onclick = pauseMusic;
       }
 
-      function playMusic() {
-        playList[0].play();
+      function playMusic(songNumber) {
+        console.log(songNumber);
+        playList[songNumber].play();
+        playList[songNumber].onComplete(function() {playMusic.call(this, songNumber + 1)});
         resetToPause.call(this);
       }
 
