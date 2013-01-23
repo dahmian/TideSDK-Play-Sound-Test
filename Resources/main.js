@@ -1,14 +1,14 @@
 require([], function() {
   /* Audio JS object did not work in Tide app, so using the TideSDK instead */
   var playList = [];
-  var openButton = document.getElementById("openButton");
+  var addFileButton = document.getElementById("openButton");
   var playButton = document.getElementById("playButton");
 
-  openButton.onclick = openMusicFile;
-  playButton.onclick = function() {playMusic.call(this, 0)};
+  addFileButton.onclick = function() {addMusicFileToPlayList.call(this, playList);};
+  playButton.onclick = function() {playPlayList.call(this, playList, 0)};
   
 
-  function openMusicFile() {
+  function addMusicFileToPlayList() {
     Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Open a music file", types: ["wav", "mp3"]})
 
     function fileSelectedCallback(filePathsArray) {
@@ -20,27 +20,27 @@ require([], function() {
     }
   }
 
-  function resetToPlay() {
-    this.src = "play.png";
-    this.onclick = playMusic;
-  }
-
-  function resetToPause() {
-    this.src = "pause.png";
-    this.onclick = pauseMusic;
-  }
-
-  function playMusic(songNumber) {
-    if (songNumber + 1 > playList.length) {
+  function playPlayList(playList, songIndex) {
+    if (songIndex + 1 > playList.length) {
       return;
     }
-    playList[songNumber].play();
-    playList[songNumber].onComplete(function() {playMusic.call(this, songNumber + 1)});
+    playList[songIndex].play();
+    playList[songIndex].onComplete(function() {playPlayList.call(this, playList, songIndex + 1)});
     resetToPause.call(this);
-  }
 
-  function pauseMusic() {
-    playList[0].pause();
-    resetToPlay.call(this);
+    function resetToPause() {
+      this.src = "pause.png";
+      this.onclick = pauseMusic;
+    }
+
+    function pauseMusic() {
+      playList[0].pause();
+      resetToPlay.call(this);
+
+      function resetToPlay() {
+        this.src = "play.png";
+        this.onclick = playPlayList;
+      }
+    }
   }
 });
