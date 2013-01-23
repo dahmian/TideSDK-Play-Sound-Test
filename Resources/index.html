@@ -58,7 +58,9 @@
       }
 
       function playMusic(songNumber) {
-        console.log(songNumber);
+        if (songNumber + 1 > playList.length) {
+          return;
+        }
         playList[songNumber].play();
         playList[songNumber].onComplete(function() {playMusic.call(this, songNumber + 1)});
         resetToPause.call(this);
