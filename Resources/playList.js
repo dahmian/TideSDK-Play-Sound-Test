@@ -10,7 +10,7 @@ define(function(require) {
 
     function play() {
       /* Audio JS object did not work in Tide app, so using the TideSDK instead */
-      if (index + 1 > playList.length) {
+      if (typeof playList[index] === "undefined") {
         return;
       }
       playList[index].play();
