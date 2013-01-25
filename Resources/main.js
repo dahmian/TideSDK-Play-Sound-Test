@@ -1,7 +1,7 @@
 require(["createFileMenu"], function() {
   var playList = [];
   var createFileMenu = require("createFileMenu");
-  createFileMenu(playList, addMusicFileToPlayList);
+  createFileMenu(playList, addMusicFileToPlayList, playPlayList);
 
 
   /* Audio JS object did not work in Tide app, so using the TideSDK instead */
