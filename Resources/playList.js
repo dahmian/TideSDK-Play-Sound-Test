@@ -15,11 +15,11 @@ define(function(require) {
       }
       playList[index].play();
       playList[index].onComplete(playNextSong);
+    }
 
-      function playNextSong() {
-        index++;
-        play();
-      }
+    function playNextSong() {
+      index++;
+      play();
     }
 
     function add() {
@@ -29,8 +29,9 @@ define(function(require) {
         if (filePathsArray.length === 0) {
           return;
         }
-        var filePath = filePathsArray[0];
-        playList.push((Ti.Media.createSound(filePath)));
+        var songPath = filePathsArray[0];
+        var song = Ti.Media.createSound(songPath);
+        playList.push(song);
       }
     }
 
