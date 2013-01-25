@@ -1,9 +1,13 @@
 require([], function() {
   var playList = [];
-  var menu = Ti.UI.createMenu();
-  var fileMenu = menu.addItem("File");
-  fileMenu.addItem("Add song to playlist", function() {addMusicFileToPlayList(playList)});
-  Ti.UI.getCurrentWindow().setMenu(menu);
+  createFileMenu(playList);
+
+  function createFileMenu(playList) {
+    var menu = Ti.UI.createMenu();
+    var fileMenu = menu.addItem("File");
+    fileMenu.addItem("Add song to playlist", function() {addMusicFileToPlayList(playList)});
+    Ti.UI.getCurrentWindow().setMenu(menu);
+  }
 
   /* Audio JS object did not work in Tide app, so using the TideSDK instead */
   var addFileButton = document.getElementById("openButton");
