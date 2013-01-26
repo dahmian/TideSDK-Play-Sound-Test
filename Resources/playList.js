@@ -46,11 +46,12 @@ define(function(require) {
         var path = filePathsArray[0];
         var fileStream = Ti.Filesystem.getFileStream(path);
         fileStream.open();
-        var firstLine = fileStream.readLine().toString();
+        var line;
+        while(line = fileStream.readLine().toString()) {
+          var song = Ti.Media.createSound(line);
+          playList.push(song);
+        }
         fileStream.close();
-
-        var song = Ti.Media.createSound(firstLine);
-        playList.push(song);
       }
     }
 
