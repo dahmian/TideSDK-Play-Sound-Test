@@ -8,6 +8,8 @@ define(function(require) {
     fileMenu.addItem("Open playlist", playList.open);
     var controlsMenu = menu.addItem("Controls");
     controlsMenu.addItem("Play", playList.play);
+    controlsMenu.addItem("Next", playList.next);
+    controlsMenu.addItem("Previous", playList.previous);
     Ti.UI.getCurrentWindow().setMenu(menu);
   }
 });
