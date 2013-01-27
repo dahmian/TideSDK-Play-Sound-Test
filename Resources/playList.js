@@ -6,6 +6,7 @@ define(function(require) {
     var playList = [];
 
     this.play = play;
+    this.pause = pause;
     this.add = add;
     this.open = open;
 

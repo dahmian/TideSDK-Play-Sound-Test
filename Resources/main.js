@@ -14,5 +14,13 @@ require(["createFileMenu", "playList"], function() {
 
   function playPlayList() {
     playList.play();
+    this.src = "images/pause.png";
+    this.onclick = pausePlayList;
+  }
+
+  function pausePlayList() {
+    playList.pause();
+    this.src = "images/play.png";
+    this.onclick = playPlayList;
   }
 });
