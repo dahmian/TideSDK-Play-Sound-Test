@@ -9,6 +9,8 @@ define(function(require) {
     this.pause = pause;
     this.add = add;
     this.open = open;
+    this.next = next;
+    this.previous = previous;
 
     function play() {
       /* Audio JS object did not work in Tide app, so using the TideSDK instead */
@@ -58,6 +60,32 @@ define(function(require) {
 
     function pause() {
       playList[index].pause();
+    }
+
+    function next() {
+      stop();
+      if (typeof playList[index + 1] === "undefined") {
+        index = 0;
+        play();
+      } else {
+        index++;
+        play();
+      }
+    }
+
+    function previous() {
+      stop();
+      if (typeof playList[index - 1] === "undefined") {
+        index = playList.length - 1;
+        play();
+      } else {
+        index--;
+        play();
+      }
+    }
+
+    function stop() {
+      playList[index].stop();
     }
   }
 });

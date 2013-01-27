@@ -7,6 +7,8 @@ require(["createFileMenu", "playList"], function() {
 
   document.getElementById("openButton").onclick = addMusicFileToPlayList;
   document.getElementById("playButton").onclick = playPlayList;
+  document.getElementById("nextButton").onclick = nextSong;
+  document.getElementById("previousButton").onclick = previousSong;
 
   function addMusicFileToPlayList() {
     playList.add()
@@ -22,5 +24,13 @@ require(["createFileMenu", "playList"], function() {
     playList.pause();
     this.src = "images/play.png";
     this.onclick = playPlayList;
+  }
+
+  function nextSong() {
+    playList.next();
+  }
+
+  function previousSong() {
+    playList.previous();
   }
 });
