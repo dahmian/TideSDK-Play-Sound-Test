@@ -1,4 +1,6 @@
 require(["createFileMenu", "playList"], function() {
+  requirejs.config({baseUrl: "js"});
+
   var playListObject = require("playList");
   var playList = new playListObject();
 
