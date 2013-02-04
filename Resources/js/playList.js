@@ -46,6 +46,7 @@ define(function(require) {
         if (filePathsArray.length === 0) {
           return;
         }
+        stop();
         var path = filePathsArray[0];
         var fileStream = Ti.Filesystem.getFileStream(path);
         fileStream.open();
@@ -86,6 +87,7 @@ define(function(require) {
 
     function stop() {
       playList[index].stop();
+      index = 0;
     }
 
     function hasPreviousSong() {
