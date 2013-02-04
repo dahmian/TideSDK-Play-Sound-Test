@@ -64,28 +64,36 @@ define(function(require) {
 
     function next() {
       stop();
-      if (typeof playList[index + 1] === "undefined") {
-        index = 0;
+      if (hasNextSong()) {
+        index++;
         play();
       } else {
-        index++;
+        index = 0;
         play();
       }
     }
 
     function previous() {
       stop();
-      if (typeof playList[index - 1] === "undefined") {
-        index = playList.length - 1;
+      if (hasPreviousSong()) {
+        index--;
         play();
       } else {
-        index--;
+        index = playList.length - 1;
         play();
       }
     }
 
     function stop() {
       playList[index].stop();
+    }
+
+    function hasPreviousSong() {
+      return (typeof playList[index - 1] !== "undefined");
+    }
+
+    function hasNextSong() {
+      return (typeof playList[index + 1] !== "undefined");
     }
   }
 });
