@@ -7,8 +7,8 @@ define(function(require) {
 
     this.play = play;
     this.pause = pause;
-    this.add = add;
-    this.open = open;
+    this.add = addSong;
+    this.open = openPlaylist;
     this.next = next;
     this.previous = previous;
 
@@ -26,7 +26,7 @@ define(function(require) {
       play();
     }
 
-    function add() {
+    function addSong() {
       Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Add music file to playlist", types: ["wav", "mp3"]})
 
       function fileSelectedCallback(filePathsArray) {
@@ -39,7 +39,7 @@ define(function(require) {
       }
     }
 
-    function open() {
+    function openPlaylist() {
       Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Open playlist"});
 
       function fileSelectedCallback(filePathsArray) {
