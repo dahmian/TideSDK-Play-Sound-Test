@@ -18,16 +18,24 @@
         width: 32%;
       }
 
-      #openButton{
+      #openButton, #saveButton{
         position: absolute;
         top: 5%;
-        right: 5%;
         width: 15%;
+      }
+
+      #openButton {
+        right: 5%;
+      }
+
+      #saveButton {
+        left: 5%;
       }
     </style>
   </head>
   <body>
     <!-- http://openclipart.org/search/?query=tango+media -->
+    <img id="saveButton" src="images/save.png"/>
     <img id="openButton" src="images/add.png"/>
     <div class="button-row">
       <img id="previousButton" src="images/previous.png"/>

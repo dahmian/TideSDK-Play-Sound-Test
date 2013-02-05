@@ -7,10 +7,15 @@ require(["createFileMenu", "playList"], function() {
   var createFileMenu = require("createFileMenu");
   createFileMenu(playList);
 
+  document.getElementById("saveButton").onclick = savePlaylist;
   document.getElementById("openButton").onclick = addMusicFileToPlayList;
   document.getElementById("playButton").onclick = playPlayList;
   document.getElementById("nextButton").onclick = nextSong;
   document.getElementById("previousButton").onclick = previousSong;
+
+  function savePlaylist() {
+    playList.save();
+  }
 
   function addMusicFileToPlayList() {
     playList.add()
