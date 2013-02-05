@@ -9,6 +9,7 @@ define(function(require) {
     this.pause = pause;
     this.add = addSong;
     this.open = openPlaylist;
+    this.save = savePlayList;
     this.next = next;
     this.previous = previous;
 
@@ -38,6 +39,22 @@ define(function(require) {
         playList.push(song);
       }
     }
+
+    function savePlayList() {
+      Ti.UI.getCurrentWindow().openSaveAsDialog(saveLocationSelectedCallback);
+
+      function saveLocationSelectedCallback(savePathArray) {
+        if (savePathArray.length === 0) {
+          return;
+        }
+        var savePath = savePathArray[0];
+        var saveFile = Ti.Filesystem.getFile(savePath);
+        var saveFileStream = saveFile.open(Ti.Filesystem.MODE_WRITE);
+        saveFileStream.writeLine("TEST");
+        saveFileStream.close();
+      }
+    }
+
 
     function openPlaylist() {
       Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Open playlist"});

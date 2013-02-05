@@ -6,6 +6,7 @@ define(function(require) {
     var fileMenu = menu.addItem("File");
     fileMenu.addItem("Add song to playlist", playList.add);
     fileMenu.addItem("Open playlist", playList.open);
+    fileMenu.addItem("Save playlist", playList.save);
     var controlsMenu = menu.addItem("Controls");
     controlsMenu.addItem("Play", playList.play);
     controlsMenu.addItem("Next", playList.next);
