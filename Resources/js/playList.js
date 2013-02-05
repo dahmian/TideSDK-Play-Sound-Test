@@ -36,6 +36,7 @@ define(function(require) {
         }
         var songPath = filePathsArray[0];
         var song = Ti.Media.createSound(songPath);
+        song.path = songPath;
         playList.push(song);
       }
     }
@@ -50,11 +51,12 @@ define(function(require) {
         var savePath = savePathArray[0];
         var saveFile = Ti.Filesystem.getFile(savePath);
         var saveFileStream = saveFile.open(Ti.Filesystem.MODE_WRITE);
-        saveFileStream.writeLine("TEST");
+        for (var key in playList) {
+          saveFileStream.writeLine(playList[key].path);
+        }
         saveFileStream.close();
       }
     }
-
 
     function openPlaylist() {
       Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Open playlist"});
