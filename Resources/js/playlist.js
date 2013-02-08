@@ -58,22 +58,20 @@ define(function(require) {
       stop();
       if (hasNextSong()) {
         currentSong++;
-        play();
       } else {
         currentSong = 0;
-        play();
       }
+      play();
     }
 
     function previous() {
       stop();
       if (hasPreviousSong()) {
         currentSong--;
-        play();
       } else {
         currentSong = playlist.length - 1;
-        play();
       }
+      play();
     }
 
     function stop() {
