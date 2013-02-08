@@ -2,7 +2,7 @@ define(function(require) {
   "use strict";
 
   return function createFileMenu(playlist) {
-    var savePlaylist = require("savePlayList");
+    var savePlaylist = require("savePlaylist");
     var menu = Ti.UI.createMenu();
     var fileMenu = menu.addItem("File");
     fileMenu.addItem("Add song to playlist", playlist.add);
