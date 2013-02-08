@@ -90,8 +90,10 @@ define(function(require) {
     }
 
     function stop() {
-      playlist[currentSong].stop();
-      currentSong = 0;
+      if (typeof playlist[currentSong] === "object") {
+        playlist[currentSong].stop();
+        currentSong = 0;
+      }
     }
 
     function hasPreviousSong() {
