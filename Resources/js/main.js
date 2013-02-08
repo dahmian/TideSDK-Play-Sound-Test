@@ -1,4 +1,4 @@
-require(["createFileMenu", "playlist"], function() {
+require(["createFileMenu", "playlist", "savePlaylist"], function() {
   requirejs.config({baseUrl: "js"});
 
   var playlistObject = require("playlist");
@@ -14,7 +14,8 @@ require(["createFileMenu", "playlist"], function() {
   document.getElementById("previousButton").onclick = previousSong;
 
   function savePlaylist() {
-    playlist.save();
+    var save = require("savePlaylist");
+    save(playlist);
   }
 
   function addMusicFileToPlayList() {

@@ -9,7 +9,7 @@ define(function(require) {
     this.pause = pause;
     this.addSongByPath = addSongByPath;
     this.importSongPaths = importSongPaths;
-    this.save = savePlayList;
+    this.exportPaths = exportPaths;
     this.next = next;
     this.previous = previous;
     this.stop = stop;
@@ -32,22 +32,12 @@ define(function(require) {
       playlist.push(song);
     }
 
-      //TODO move dialog and save code out, leave string generation in
-    function savePlayList() {
-      Ti.UI.getCurrentWindow().openSaveAsDialog(saveLocationSelectedCallback);
-
-      function saveLocationSelectedCallback(savePathArray) {
-        if (savePathArray.length === 0) {
-          return;
-        }
-        var savePath = savePathArray[0];
-        var saveFile = Ti.Filesystem.getFile(savePath);
-        var saveFileStream = saveFile.open(Ti.Filesystem.MODE_WRITE);
-        for (var key in playlist) {
-          saveFileStream.writeLine(playlist[key].path);
-        }
-        saveFileStream.close();
+    function exportPaths() {
+      var paths = [];
+      for (var key in playlist) {
+        paths.push(playlist[key].path);
       }
+      return paths;
     }
 
     function importSongPaths(pathArray) {
@@ -59,7 +49,6 @@ define(function(require) {
       }
       playlist = newPlaylist;
     }
-
 
     function pause() {
       playlist[currentSong].pause();
