@@ -28,6 +28,7 @@ define(function(require) {
     }
 
     function addSong() {
+      //TODO dialog code should not be in playlist object, make a generic addSong function and delete dialog to the UI
       Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Add music file to playlist", types: ["wav", "mp3"]})
 
       function fileSelectedCallback(filePathsArray) {
@@ -42,6 +43,7 @@ define(function(require) {
     }
 
     function savePlayList() {
+      //TODO move dialog and save code out, leave string generation in
       Ti.UI.getCurrentWindow().openSaveAsDialog(saveLocationSelectedCallback);
 
       function saveLocationSelectedCallback(savePathArray) {
