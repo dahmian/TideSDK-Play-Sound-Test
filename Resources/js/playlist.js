@@ -8,10 +8,11 @@ define(function(require) {
     this.play = play;
     this.pause = pause;
     this.addSongByPath = addSongByPath;
-    this.open = openPlaylist;
+    this.importSongPaths = importSongPaths;
     this.save = savePlayList;
     this.next = next;
     this.previous = previous;
+    this.stop = stop;
 
     function play() {
       /* Audio JS object did not work in Tide app, so using the TideSDK instead */
@@ -60,26 +61,6 @@ define(function(require) {
       playlist = newPlaylist;
     }
 
-    function openPlaylist() {
-      Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Open playlist"});
-
-      function fileSelectedCallback(filePathsArray) {
-        if (filePathsArray.length === 0) {
-          return;
-        }
-        stop();
-        var path = filePathsArray[0];
-        var fileStream = Ti.Filesystem.getFileStream(path);
-        fileStream.open();
-        var line;
-        var pathArray = [];
-        while(line = fileStream.readLine().toString()) {
-          pathArray.push(line);
-        }
-        fileStream.close();
-        importSongPaths(pathArray);
-      }
-    }
 
     function pause() {
       playlist[currentSong].pause();
