@@ -34,8 +34,8 @@ define(function(require) {
       playlist.push(song);
     }
 
-    function savePlayList() {
       //TODO move dialog and save code out, leave string generation in
+    function savePlayList() {
       Ti.UI.getCurrentWindow().openSaveAsDialog(saveLocationSelectedCallback);
 
       function saveLocationSelectedCallback(savePathArray) {
@@ -56,6 +56,7 @@ define(function(require) {
       var newPlaylist = [];
       for (var key in pathArray) {
         var song = Ti.Media.createSound(pathArray[key])
+        song.path = pathArray[key];
         newPlaylist.push(song);
       }
       playlist = newPlaylist;
