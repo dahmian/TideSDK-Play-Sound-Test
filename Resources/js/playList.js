@@ -1,9 +1,9 @@
 define(function(require) {
   "use strict";
 
-  return function playListObject() {
+  return function playlistObject() {
     var index = 0;
-    var playList = [];
+    var playlist = [];
 
     this.play = play;
     this.pause = pause;
@@ -15,11 +15,11 @@ define(function(require) {
 
     function play() {
       /* Audio JS object did not work in Tide app, so using the TideSDK instead */
-      if (typeof playList[index] === "undefined") {
+      if (typeof playlist[index] === "undefined") {
         return;
       }
-      playList[index].play();
-      playList[index].onComplete(playNextSong);
+      playlist[index].play();
+      playlist[index].onComplete(playNextSong);
     }
 
     function playNextSong() {
@@ -37,7 +37,7 @@ define(function(require) {
         var songPath = filePathsArray[0];
         var song = Ti.Media.createSound(songPath);
         song.path = songPath;
-        playList.push(song);
+        playlist.push(song);
       }
     }
 
@@ -51,8 +51,8 @@ define(function(require) {
         var savePath = savePathArray[0];
         var saveFile = Ti.Filesystem.getFile(savePath);
         var saveFileStream = saveFile.open(Ti.Filesystem.MODE_WRITE);
-        for (var key in playList) {
-          saveFileStream.writeLine(playList[key].path);
+        for (var key in playlist) {
+          saveFileStream.writeLine(playlist[key].path);
         }
         saveFileStream.close();
       }
@@ -72,14 +72,14 @@ define(function(require) {
         var line;
         while(line = fileStream.readLine().toString()) {
           var song = Ti.Media.createSound(line);
-          playList.push(song);
+          playlist.push(song);
         }
         fileStream.close();
       }
     }
 
     function pause() {
-      playList[index].pause();
+      playlist[index].pause();
     }
 
     function next() {
@@ -99,22 +99,22 @@ define(function(require) {
         index--;
         play();
       } else {
-        index = playList.length - 1;
+        index = playlist.length - 1;
         play();
       }
     }
 
     function stop() {
-      playList[index].stop();
+      playlist[index].stop();
       index = 0;
     }
 
     function hasPreviousSong() {
-      return (typeof playList[index - 1] !== "undefined");
+      return (typeof playlist[index - 1] !== "undefined");
     }
 
     function hasNextSong() {
-      return (typeof playList[index + 1] !== "undefined");
+      return (typeof playlist[index + 1] !== "undefined");
     }
   }
 });
