@@ -15,12 +15,10 @@ define(function(require) {
     this.stop = stop;
 
     function play() {
-      /* Audio JS object did not work in Tide app, so using the TideSDK instead */
-      if (typeof playlist[currentSong] === "undefined") {
-        return;
+      if (hasCurrentSong()) {
+        playlist[currentSong].play();
+        playlist[currentSong].onComplete(playNextSong);
       }
-      playlist[currentSong].play();
-      playlist[currentSong].onComplete(playNextSong);
     }
 
     function playNextSong() {
@@ -90,10 +88,14 @@ define(function(require) {
     }
 
     function stop() {
-      if (typeof playlist[currentSong] === "object") {
+      if (hasCurrentSong()) {
         playlist[currentSong].stop();
         currentSong = 0;
       }
+    }
+
+    function hasCurrentSong() {
+      return (typeof playlist[currentSong] === "object");
     }
 
     function hasPreviousSong() {
