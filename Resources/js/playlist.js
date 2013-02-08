@@ -2,7 +2,7 @@ define(function(require) {
   "use strict";
 
   return function playlistObject() {
-    var index = 0;
+    var currentSong = 0;
     var playlist = [];
 
     this.play = play;
@@ -15,15 +15,15 @@ define(function(require) {
 
     function play() {
       /* Audio JS object did not work in Tide app, so using the TideSDK instead */
-      if (typeof playlist[index] === "undefined") {
+      if (typeof playlist[currentSong] === "undefined") {
         return;
       }
-      playlist[index].play();
-      playlist[index].onComplete(playNextSong);
+      playlist[currentSong].play();
+      playlist[currentSong].onComplete(playNextSong);
     }
 
     function playNextSong() {
-      index++;
+      currentSong++;
       play();
     }
 
@@ -79,16 +79,16 @@ define(function(require) {
     }
 
     function pause() {
-      playlist[index].pause();
+      playlist[currentSong].pause();
     }
 
     function next() {
       stop();
       if (hasNextSong()) {
-        index++;
+        currentSong++;
         play();
       } else {
-        index = 0;
+        currentSong = 0;
         play();
       }
     }
@@ -96,25 +96,25 @@ define(function(require) {
     function previous() {
       stop();
       if (hasPreviousSong()) {
-        index--;
+        currentSong--;
         play();
       } else {
-        index = playlist.length - 1;
+        currentSong = playlist.length - 1;
         play();
       }
     }
 
     function stop() {
-      playlist[index].stop();
-      index = 0;
+      playlist[currentSong].stop();
+      currentSong = 0;
     }
 
     function hasPreviousSong() {
-      return (typeof playlist[index - 1] !== "undefined");
+      return (typeof playlist[currentSong - 1] !== "undefined");
     }
 
     function hasNextSong() {
-      return (typeof playlist[index + 1] !== "undefined");
+      return (typeof playlist[currentSong + 1] !== "undefined");
     }
   }
 });
