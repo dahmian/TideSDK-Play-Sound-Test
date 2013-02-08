@@ -1,11 +1,11 @@
-require(["createFileMenu", "playList"], function() {
+require(["createFileMenu", "playlist"], function() {
   requirejs.config({baseUrl: "js"});
 
-  var playListObject = require("playList");
-  var playList = new playListObject();
+  var playlistObject = require("playlist");
+  var playlist = new playlistObject();
 
   var createFileMenu = require("createFileMenu");
-  createFileMenu(playList);
+  createFileMenu(playlist);
 
   document.getElementById("saveButton").onclick = savePlaylist;
   document.getElementById("openButton").onclick = addMusicFileToPlayList;
@@ -14,30 +14,30 @@ require(["createFileMenu", "playList"], function() {
   document.getElementById("previousButton").onclick = previousSong;
 
   function savePlaylist() {
-    playList.save();
+    playlist.save();
   }
 
   function addMusicFileToPlayList() {
-    playList.add()
+    playlist.add()
   }
 
   function playPlayList() {
-    playList.play();
+    playlist.play();
     this.src = "images/pause.png";
     this.onclick = pausePlayList;
   }
 
   function pausePlayList() {
-    playList.pause();
+    playlist.pause();
     this.src = "images/play.png";
     this.onclick = playPlayList;
   }
 
   function nextSong() {
-    playList.next();
+    playlist.next();
   }
 
   function previousSong() {
-    playList.previous();
+    playlist.previous();
   }
 });

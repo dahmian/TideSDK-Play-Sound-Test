@@ -1,16 +1,16 @@
 define(function(require) {
   "use strict";
 
-  return function createFileMenu(playList) {
+  return function createFileMenu(playlist) {
     var menu = Ti.UI.createMenu();
     var fileMenu = menu.addItem("File");
-    fileMenu.addItem("Add song to playlist", playList.add);
-    fileMenu.addItem("Open playlist", playList.open);
-    fileMenu.addItem("Save playlist", playList.save);
+    fileMenu.addItem("Add song to playlist", playlist.add);
+    fileMenu.addItem("Open playlist", playlist.open);
+    fileMenu.addItem("Save playlist", playlist.save);
     var controlsMenu = menu.addItem("Controls");
-    controlsMenu.addItem("Play", playList.play);
-    controlsMenu.addItem("Next", playList.next);
-    controlsMenu.addItem("Previous", playList.previous);
+    controlsMenu.addItem("Play", playlist.play);
+    controlsMenu.addItem("Next", playlist.next);
+    controlsMenu.addItem("Previous", playlist.previous);
     Ti.UI.getCurrentWindow().setMenu(menu);
   }
 });
