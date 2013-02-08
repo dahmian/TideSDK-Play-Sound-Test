@@ -7,7 +7,7 @@ define(function(require) {
 
     this.play = play;
     this.pause = pause;
-    this.add = addSong;
+    this.addSongByPath = addSongByPath;
     this.open = openPlaylist;
     this.save = savePlayList;
     this.next = next;
@@ -27,19 +27,10 @@ define(function(require) {
       play();
     }
 
-    function addSong() {
-      //TODO dialog code should not be in playlist object, make a generic addSong function and delete dialog to the UI
-      Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Add music file to playlist", types: ["wav", "mp3"]})
-
-      function fileSelectedCallback(filePathsArray) {
-        if (filePathsArray.length === 0) {
-          return;
-        }
-        var songPath = filePathsArray[0];
-        var song = Ti.Media.createSound(songPath);
-        song.path = songPath;
-        playlist.push(song);
-      }
+    function addSongByPath(path) {
+      var song = Ti.Media.createSound(path);
+      song.path = path;
+      playlist.push(song);
     }
 
     function savePlayList() {
