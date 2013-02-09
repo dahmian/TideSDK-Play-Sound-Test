@@ -2,12 +2,13 @@ define(function(require) {
   "use strict";
 
   return function(playlist) {
-    document.getElementById("savePlaylistButton").onclick = savePlaylist;
-    document.getElementById("openPlaylistButton").onclick = openPlaylist;
-    document.getElementById("addSongButton").onclick = addMusicFileToPlayList;
-    document.getElementById("playButton").onclick = playPlayList;
-    document.getElementById("nextButton").onclick = nextSong;
-    document.getElementById("previousButton").onclick = previousSong;
+    var $ = require("jquery");
+    $("#savePlaylistButton").click(savePlaylist);
+    $("#openPlaylistButton").click(openPlaylist);
+    $("#addSongButton").click(addMusicFileToPlayList);
+    $("#playButton").click(playPlayList);
+    $("#nextButton").click(nextSong);
+    $("#previousButton").click(previousSong);
 
     function savePlaylist() {
       var save = require("playlist/save");
