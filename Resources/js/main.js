@@ -1,4 +1,4 @@
-require(["createFileMenu", "playlist", "savePlaylist"], function() {
+require(["createFileMenu", "playlist", "savePlaylist", "addSongToPlaylist"], function() {
   requirejs.config({baseUrl: "js"});
 
   var playlistObject = require("playlist");
@@ -19,15 +19,8 @@ require(["createFileMenu", "playlist", "savePlaylist"], function() {
   }
 
   function addMusicFileToPlayList() {
-      Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Add music file to playlist", types: ["wav", "mp3"]})
-
-      function fileSelectedCallback(filePathsArray) {
-        if (filePathsArray.length === 0) {
-          return;
-        }
-        var songPath = filePathsArray[0];
-        playlist.addSongByPath(songPath);
-      }
+    var addSongToPlaylist = require("addSongToPlaylist");
+    addSongToPlaylist(playlist);
   }
 
   function playPlayList() {
