@@ -17,14 +17,10 @@ define(function(require) {
     function play() {
       if (hasCurrentSong()) {
         playlist[currentSong].play();
-        playlist[currentSong].onComplete(playNextSong);
+        playlist[currentSong].onComplete(playNext);
       }
     }
 
-    function playNextSong() {
-      currentSong++;
-      play();
-    }
 
     function addSongByPath(path) {
       var song = Ti.Media.createSound(path);
