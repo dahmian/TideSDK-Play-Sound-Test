@@ -55,29 +55,24 @@ define(function(require) {
     }
 
     function playNext() {
-      stop();
       if (hasNextSong()) {
+        stop()
         currentSong++;
-      } else {
-        currentSong = 0;
+        play();
       }
-      play();
     }
 
     function playPrevious() {
-      stop();
       if (hasPreviousSong()) {
+        stop();
         currentSong--;
-      } else {
-        currentSong = playlist.length - 1;
+        play();
       }
-      play();
     }
 
     function stop() {
       if (hasCurrentSong()) {
         playlist[currentSong].stop();
-        currentSong = 0;
       }
     }
 

@@ -5,7 +5,6 @@ define(function(require) {
     Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Open playlist"});
 
     function fileSelectedCallback(filePathsArray) {
-      debugger;
       if (filePathsArray.length === 0) {
         return;
       }
