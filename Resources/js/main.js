@@ -1,10 +1,10 @@
-require(["createFileMenu", "playlist", "savePlaylist", "addSongToPlaylist", "openPlaylist"], function() {
+require(["fileMenu/create", "playlist", "savePlaylist", "addSongToPlaylist", "openPlaylist"], function() {
   requirejs.config({baseUrl: "js"});
 
   var playlistObject = require("playlist");
   var playlist = new playlistObject();
 
-  var createFileMenu = require("createFileMenu");
+  var createFileMenu = require("fileMenu/create");
   createFileMenu(playlist);
 
   document.getElementById("saveButton").onclick = savePlaylist;
