@@ -6,9 +6,9 @@ require(["menu/create", "playlist/create", "playlist/save", "playlist/addSong", 
 
   require("menu/create")(playlist);
 
-  document.getElementById("saveButton").onclick = savePlaylist;
+  document.getElementById("savePlaylistButton").onclick = savePlaylist;
   document.getElementById("openPlaylistButton").onclick = openPlaylist;
-  document.getElementById("openButton").onclick = addMusicFileToPlayList;
+  document.getElementById("addSongButton").onclick = addMusicFileToPlayList;
   document.getElementById("playButton").onclick = playPlayList;
   document.getElementById("nextButton").onclick = nextSong;
   document.getElementById("previousButton").onclick = previousSong;
