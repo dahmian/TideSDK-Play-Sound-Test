@@ -5,6 +5,7 @@ define(function(require) {
     Ti.UI.getCurrentWindow().openFileChooserDialog(fileSelectedCallback, {multiple: false, title: "Open playlist"});
 
     function fileSelectedCallback(filePathsArray) {
+      debugger;
       if (filePathsArray.length === 0) {
         return;
       }
@@ -14,8 +15,12 @@ define(function(require) {
       fileStream.open();
       var line;
       var pathArray = [];
-      while(line = fileStream.readLine().toString()) {
-        pathArray.push(line);
+      while(fileStream.ready()){
+        var line = fileStream.readLine()
+        if (line !== null) {
+          var songPath = line.toString();
+        }
+        pathArray.push(songPath);
       }
       fileStream.close();
       playlist.importSongPaths(pathArray);
