@@ -1,4 +1,4 @@
-require(["createFileMenu", "playlist", "savePlaylist", "addSongToPlaylist"], function() {
+require(["createFileMenu", "playlist", "savePlaylist", "addSongToPlaylist", "openPlaylist"], function() {
   requirejs.config({baseUrl: "js"});
 
   var playlistObject = require("playlist");
@@ -8,6 +8,7 @@ require(["createFileMenu", "playlist", "savePlaylist", "addSongToPlaylist"], fun
   createFileMenu(playlist);
 
   document.getElementById("saveButton").onclick = savePlaylist;
+  document.getElementById("openPlaylistButton").onclick = openPlaylist;
   document.getElementById("openButton").onclick = addMusicFileToPlayList;
   document.getElementById("playButton").onclick = playPlayList;
   document.getElementById("nextButton").onclick = nextSong;
@@ -16,6 +17,11 @@ require(["createFileMenu", "playlist", "savePlaylist", "addSongToPlaylist"], fun
   function savePlaylist() {
     var save = require("savePlaylist");
     save(playlist);
+  }
+
+  function openPlaylist() {
+    var open = require("openPlaylist");
+    open(playlist);
   }
 
   function addMusicFileToPlayList() {
