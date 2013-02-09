@@ -43,10 +43,10 @@ require(["createFileMenu", "playlist", "savePlaylist"], function() {
   }
 
   function nextSong() {
-    playlist.next();
+    playlist.playNext();
   }
 
   function previousSong() {
-    playlist.previous();
+    playlist.playPrevious();
   }
 });

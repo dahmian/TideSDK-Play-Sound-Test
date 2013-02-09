@@ -11,8 +11,8 @@ define(function(require) {
     fileMenu.addItem("Save playlist", function() {savePlaylist(playlist)});
     var controlsMenu = menu.addItem("Controls");
     controlsMenu.addItem("Play", playlist.play);
-    controlsMenu.addItem("Next", playlist.next);
-    controlsMenu.addItem("Previous", playlist.previous);
+    controlsMenu.addItem("Next", playlist.playNext);
+    controlsMenu.addItem("Previous", playlist.playPrevious);
     Ti.UI.getCurrentWindow().setMenu(menu);
   }
 });

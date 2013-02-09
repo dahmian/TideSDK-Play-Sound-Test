@@ -10,8 +10,8 @@ define(function(require) {
     this.addSongByPath = addSongByPath;
     this.importSongPaths = importSongPaths;
     this.exportPaths = exportPaths;
-    this.next = next;
-    this.previous = previous;
+    this.playNext = playNext;
+    this.playPrevious = playPrevious;
     this.stop = stop;
 
     function play() {
@@ -54,7 +54,7 @@ define(function(require) {
       playlist[currentSong].pause();
     }
 
-    function next() {
+    function playNext() {
       stop();
       if (hasNextSong()) {
         currentSong++;
@@ -64,7 +64,7 @@ define(function(require) {
       play();
     }
 
-    function previous() {
+    function playPrevious() {
       stop();
       if (hasPreviousSong()) {
         currentSong--;
