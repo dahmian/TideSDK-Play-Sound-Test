@@ -1,7 +1,7 @@
 define(function(require) {
   "use strict";
 
-  return function playlistObject() {
+  return function() {
     var currentSong = 0;
     var playlist = [];
 
@@ -20,7 +20,6 @@ define(function(require) {
         playlist[currentSong].onComplete(playNext);
       }
     }
-
 
     function addSongByPath(path) {
       var song = Ti.Media.createSound(path);
