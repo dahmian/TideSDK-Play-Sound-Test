@@ -7,9 +7,5 @@ To install, go to http://www.tidesdk.org/ and download TideSDK as well as the Ti
 
 <p align="center">
 <br/>
-<img src="https://raw.github.com/dahmian/TideSDK-Play-Sound-Test/master/docs/windowsScreenshot.png"/>
-<br/>
-<br/>
-<br/>
-<img src="https://raw.github.com/dahmian/TideSDK-Play-Sound-Test/master/docs/macScreenshot.png"/>
+<img src="https://raw.github.com/dahmian/TideSDK-Play-Sound-Test/master/docs/musicPlayer.png"/>
 </p>
